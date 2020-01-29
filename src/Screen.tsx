@@ -28,6 +28,7 @@ export const Screen: React.FC<Props> = ({
     <SafeAreaView style={{flex: 1, backgroundColor: '#222B45'}}>
       <TopNavigation
         title={title}
+        titleStyle={{fontSize: 20}}
         alignment="center"
         leftControl={showBack ? BackAction() : undefined}
       />
