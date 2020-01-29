@@ -6,6 +6,7 @@ import {
   TopNavigation,
   TopNavigationAction,
   Icon,
+  Text,
 } from '@ui-kitten/components';
 
 type Props = {
@@ -27,14 +28,13 @@ export const Screen: React.FC<Props> = ({
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#222B45'}}>
       <TopNavigation
-        title={title}
-        titleStyle={{fontSize: 20}}
         alignment="center"
         leftControl={showBack ? BackAction() : undefined}
       />
-      <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        {children}
+      <Layout style={{marginTop: 40, marginBottom: 40, alignItems: 'center'}}>
+        <Text category="h2">{title}</Text>
       </Layout>
+      <Layout style={{flex: 1, alignItems: 'center'}}>{children}</Layout>
     </SafeAreaView>
   );
 };
