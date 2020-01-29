@@ -3,13 +3,24 @@ import {NavigationStackScreenComponent} from 'react-navigation-stack';
 import {Button} from '@ui-kitten/components';
 import {Screen} from './Screen';
 
-export const Home: NavigationStackScreenComponent = ({navigation}) => (
+type Params = {submitted?: boolean};
+
+export const Home: NavigationStackScreenComponent<Params> = ({navigation}) => (
   <Screen title="Home">
-    <Button
-      onPress={() => {
-        navigation.navigate('FeedbackQuestion');
-      }}>
-      FEEDBACK
-    </Button>
+    {navigation.getParam('submitted') ? (
+      <Button
+        onPress={() => {
+          navigation.navigate('FeedbackQuestion');
+        }}>
+        AGAIN
+      </Button>
+    ) : (
+      <Button
+        onPress={() => {
+          navigation.navigate('FeedbackQuestion');
+        }}>
+        FEEDBACK
+      </Button>
+    )}
   </Screen>
 );
