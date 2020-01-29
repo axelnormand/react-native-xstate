@@ -4,7 +4,7 @@ import {Button} from '@ui-kitten/components';
 import {Screen} from './Screen';
 
 export const FeedbackForm: NavigationStackScreenComponent = ({navigation}) => (
-  <Screen>
+  <Screen title="Why?">
     <Button
       onPress={() => {
         navigation.navigate('Thanks');

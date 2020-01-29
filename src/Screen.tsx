@@ -9,23 +9,28 @@ import {
 } from '@ui-kitten/components';
 
 type Props = {
+  title: string;
   children: React.ReactNode;
   showBack?: boolean;
   onBack?: () => void;
 };
-export const Screen: React.FC<Props> = ({showBack, onBack, children}) => {
+export const Screen: React.FC<Props> = ({
+  showBack,
+  onBack,
+  title,
+  children,
+}) => {
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={onBack} />
   );
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#222B45'}}>
       <TopNavigation
-        title="Feedback"
+        title={title}
         alignment="center"
         leftControl={showBack ? BackAction() : undefined}
       />
-      <Divider />
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         {children}
       </Layout>

@@ -6,14 +6,19 @@ import {Screen} from './Screen';
 export const FeedbackQuestion: NavigationStackScreenComponent = ({
   navigation,
 }) => (
-  <Screen showBack onBack={() => navigation.goBack()}>
+  <Screen
+    showBack={true}
+    onBack={() => navigation.goBack()}
+    title="How was your experience?">
     <Button
+      style={{marginBottom: 50}}
       onPress={() => {
         navigation.navigate('Thanks');
       }}>
       GOOD
     </Button>
     <Button
+      status="danger"
       onPress={() => {
         navigation.navigate('FeedbackForm');
       }}>
