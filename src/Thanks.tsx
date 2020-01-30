@@ -7,7 +7,7 @@ export const Thanks: NavigationStackScreenComponent = ({navigation}) => (
   <Screen title="Thanks">
     <Button
       onPress={() => {
-        navigation.navigate('Home', {submitted: true});
+        navigation.navigate('Home');
       }}>
       THANKS!
     </Button>
