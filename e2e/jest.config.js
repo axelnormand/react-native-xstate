@@ -1,5 +1,7 @@
 module.exports = {
   preset: 'react-native',
   testEnvironment: 'node',
-  setupTestFrameworkScriptFile: './testSetup.test.ts',
+  setupFilesAfterEnv: ['./jestSetup.ts'],
+  reporters: ['detox/runners/jest/streamlineReporter'],
+  verbose: true,
 };

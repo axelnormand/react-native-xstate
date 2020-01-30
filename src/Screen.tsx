@@ -1,7 +1,6 @@
 import React from 'react';
 import {SafeAreaView} from 'react-navigation';
 import {
-  Divider,
   Layout,
   TopNavigation,
   TopNavigationAction,
@@ -14,19 +13,21 @@ type Props = {
   children: React.ReactNode;
   showBack?: boolean;
   onBack?: () => void;
+  testID?: string;
 };
 export const Screen: React.FC<Props> = ({
   showBack,
   onBack,
   title,
   children,
+  testID,
 }) => {
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={onBack} />
   );
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#222B45'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#222B45'}} testID={testID}>
       <TopNavigation
         alignment="center"
         leftControl={showBack ? BackAction() : undefined}

@@ -4,7 +4,7 @@ import {Button} from '@ui-kitten/components';
 import {Screen} from './Screen';
 
 export const Home: NavigationStackScreenComponent = ({navigation}) => (
-  <Screen title="Home">
+  <Screen title="Home" testID="Home">
     <Button
       disabled={false}
       onPress={() => {
