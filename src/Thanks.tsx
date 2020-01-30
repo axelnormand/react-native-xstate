@@ -4,12 +4,12 @@ import {Button} from '@ui-kitten/components';
 import {Screen} from './Screen';
 
 export const Thanks: NavigationStackScreenComponent = ({navigation}) => (
-  <Screen title="Thanks">
+  <Screen title="Thanks!" testID="thanks">
     <Button
       onPress={() => {
         navigation.navigate('Home');
       }}>
-      THANKS!
+      HOME
     </Button>
   </Screen>
 );

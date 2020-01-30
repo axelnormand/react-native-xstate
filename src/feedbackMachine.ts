@@ -44,6 +44,7 @@ export const feedbackMachine = Machine<Context, StateSchema, Event>({
     feedbackForm: {
       on: {
         SUBMIT_FEEDBACK: {
+          target: 'thanks',
           actions: assign((_, event) => {
             return {
               feedback: event.feedback,

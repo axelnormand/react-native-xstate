@@ -7,7 +7,7 @@ export const FeedbackForm: NavigationStackScreenComponent = ({navigation}) => {
   const [value, setValue] = useState('');
 
   return (
-    <Screen title="Why?">
+    <Screen title="Why?" testID="feedbackForm">
       <Input
         placeholder="Yes, do tell us why?"
         value={value}
