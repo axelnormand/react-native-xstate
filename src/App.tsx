@@ -5,14 +5,16 @@ import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {mapping, dark} from '@eva-design/eva';
 import {AppNavigator} from './navigation';
 
-const App = () => (
-  <>
-    <IconRegistry icons={EvaIconsPack} />
-    <StatusBar barStyle="dark-content" />
-    <ApplicationProvider mapping={mapping} theme={dark}>
-      <AppNavigator />
-    </ApplicationProvider>
-  </>
-);
+const App = () => {
+  return (
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <StatusBar barStyle="dark-content" />
+      <ApplicationProvider mapping={mapping} theme={dark}>
+        <AppNavigator />
+      </ApplicationProvider>
+    </>
+  );
+};
 
 export default App;

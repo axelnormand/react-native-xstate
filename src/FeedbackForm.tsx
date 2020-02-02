@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import {NavigationStackScreenComponent} from 'react-navigation-stack';
 import {Button, Input} from '@ui-kitten/components';
 import {Screen} from './Screen';
+import {useFeedbackMachineNavigation} from './feedbackMachineHook';
 
 export const FeedbackForm: NavigationStackScreenComponent = ({navigation}) => {
   const [value, setValue] = useState('');
+  const {navigate} = useFeedbackMachineNavigation(navigation);
 
   return (
     <Screen title="Why?" testID="feedbackForm">
@@ -17,9 +19,7 @@ export const FeedbackForm: NavigationStackScreenComponent = ({navigation}) => {
       />
 
       <Button
-        onPress={() => {
-          navigation.navigate('Thanks');
-        }}>
+        onPress={() => navigate({type: 'SUBMIT_FEEDBACK', feedback: value})}>
         SUBMIT
       </Button>
     </Screen>
