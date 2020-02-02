@@ -1,4 +1,4 @@
-import {Machine, assign, interpret, Interpreter} from 'xstate';
+import {Machine, assign, interpret} from 'xstate';
 
 export type StateSchema = {
   states: {
@@ -19,7 +19,10 @@ export type Event =
 
 export type Context = {submitted: boolean; feedback: string};
 
+export const id = 'feedbackMachine';
+
 export const feedbackMachine = Machine<Context, StateSchema, Event>({
+  id,
   context: {
     submitted: false,
     feedback: '',
@@ -75,4 +78,6 @@ export const feedbackMachine = Machine<Context, StateSchema, Event>({
 });
 
 /** start singleton feedback machine on bootstrap */
-export const feedbackService = interpret(feedbackMachine).start();
+export const feedbackService = interpret(feedbackMachine)
+  .onTransition(state => console.log('state transition', state))
+  .start();
