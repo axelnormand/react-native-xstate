@@ -34,9 +34,12 @@ export const feedbackModel = createModel(feedbackMachine).withEvents({
     },
   },
   SUBMIT_FEEDBACK: {
-    exec: async () => {
+    exec: async (_, event) => {
+      // @ts-ignore event type for now
+      await element(by.id('input_feedback')).typeText(event.feedback);
       await element(by.id('submit_feedback')).tap();
     },
+    cases: [{feedback: 'state machines ftw'}, {feedback: ''}],
   },
   CLICK_BACK: {
     exec: async () => {

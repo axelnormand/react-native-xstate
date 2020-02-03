@@ -11,6 +11,7 @@ export const FeedbackForm: NavigationStackScreenComponent = ({navigation}) => {
   return (
     <Screen title="Why?" testID="feedbackForm">
       <Input
+        testID="input_feedback"
         placeholder="Yes, do tell us why?"
         value={value}
         onChangeText={setValue}
