@@ -42,7 +42,12 @@ export const feedbackMachine = Machine<Context, StateSchema, Event>({
     },
     feedbackQuestion: {
       on: {
-        CLICK_YES: 'thanks',
+        CLICK_YES: {
+          target: 'thanks',
+          actions: assign({
+            submitted: true,
+          }),
+        },
         CLICK_NO: 'feedbackForm',
         CLICK_BACK: 'home',
       },
@@ -54,11 +59,9 @@ export const feedbackMachine = Machine<Context, StateSchema, Event>({
       on: {
         SUBMIT_FEEDBACK: {
           target: 'thanks',
-          actions: assign((_, event) => {
-            return {
-              feedback: event.feedback,
-              submitted: true,
-            };
+          actions: assign({
+            feedback: (_, event) => event.feedback,
+            submitted: true,
           }),
         },
       },
