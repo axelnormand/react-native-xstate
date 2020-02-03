@@ -17,7 +17,10 @@ export type Event =
   | {type: 'CLICK_BACK'}
   | {type: 'CLICK_HOME'};
 
-export type Context = {submitted: boolean; feedback: string};
+export type Context = {
+  submitted: boolean;
+  feedback: string;
+};
 
 export const id = 'feedbackMachine';
 
@@ -44,7 +47,7 @@ export const feedbackMachine = Machine<Context, StateSchema, Event>({
       on: {
         CLICK_YES: {
           target: 'thanks',
-          actions: assign({
+          actions: assign<Context>({
             submitted: true,
           }),
         },
@@ -59,10 +62,10 @@ export const feedbackMachine = Machine<Context, StateSchema, Event>({
       on: {
         SUBMIT_FEEDBACK: {
           target: 'thanks',
-          actions: assign({
-            feedback: (_, event) => event.feedback,
+          actions: assign((_, event) => ({
+            feedback: event.feedback,
             submitted: true,
-          }),
+          })),
         },
       },
       meta: {

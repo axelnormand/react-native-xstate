@@ -6,11 +6,11 @@ import {Event, feedbackService, id} from './feedbackMachine';
 export const useFeedbackMachineNavigation = (
   navigation: NavigationScreenProp<any>,
 ) => {
-  const [, send] = useService(feedbackService);
+  const [current, send] = useService(feedbackService);
   const navigate = (event: Event) => {
     const newState = send(event);
     const route = newState.meta[`${id}.${newState.value}`].route;
     navigation.navigate(route);
   };
-  return {navigate};
+  return {navigate, current, send};
 };
