@@ -8,7 +8,11 @@ export const Thanks: NavigationStackScreenComponent = ({navigation}) => {
   const {navigate} = useFeedbackMachineNavigation(navigation);
   return (
     <Screen title="Thanks!" testID="thanks">
-      <Button onPress={() => navigate({type: 'CLICK_HOME'})}>HOME</Button>
+      <Button
+        testID="click_home"
+        onPress={() => navigate({type: 'CLICK_HOME'})}>
+        HOME
+      </Button>
     </Screen>
   );
 };

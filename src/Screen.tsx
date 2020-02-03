@@ -23,7 +23,7 @@ export const Screen: React.FC<Props> = ({
   testID,
 }) => {
   const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={onBack} />
+    <TopNavigationAction icon={BackIcon} onPress={onBack} testID="click_back" />
   );
 
   return (

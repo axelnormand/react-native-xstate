@@ -13,6 +13,7 @@ export const Home: NavigationStackScreenComponent = ({navigation}) => {
     <Screen title="Home" testID="home">
       <Button
         disabled={current.context.submitted}
+        testID="click_feedback"
         onPress={() => navigate({type: 'CLICK_FEEDBACK'})}>
         FEEDBACK
       </Button>

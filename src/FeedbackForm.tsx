@@ -19,6 +19,7 @@ export const FeedbackForm: NavigationStackScreenComponent = ({navigation}) => {
       />
 
       <Button
+        testID="submit_feedback"
         onPress={() => navigate({type: 'SUBMIT_FEEDBACK', feedback: value})}>
         SUBMIT
       </Button>

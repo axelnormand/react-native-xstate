@@ -1,4 +1,5 @@
 import {Machine, assign, interpret} from 'xstate';
+import {element, by} from 'detox';
 
 export type StateSchema = {
   states: {
@@ -41,6 +42,9 @@ export const feedbackMachine = Machine<Context, StateSchema, Event>({
       },
       meta: {
         route: 'Home',
+        test: async () => {
+          await element(by.id('home'));
+        },
       },
     },
     feedbackQuestion: {
@@ -56,6 +60,9 @@ export const feedbackMachine = Machine<Context, StateSchema, Event>({
       },
       meta: {
         route: 'FeedbackQuestion',
+        test: async () => {
+          await element(by.id('feedbackQuestion'));
+        },
       },
     },
     feedbackForm: {
@@ -70,6 +77,9 @@ export const feedbackMachine = Machine<Context, StateSchema, Event>({
       },
       meta: {
         route: 'FeedbackForm',
+        test: async () => {
+          await element(by.id('feedbackForm'));
+        },
       },
     },
     thanks: {
@@ -78,6 +88,9 @@ export const feedbackMachine = Machine<Context, StateSchema, Event>({
       },
       meta: {
         route: 'Thanks',
+        test: async () => {
+          await element(by.id('thanks'));
+        },
       },
     },
   },

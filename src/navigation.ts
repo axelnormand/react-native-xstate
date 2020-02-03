@@ -5,16 +5,15 @@ import {FeedbackQuestion} from './FeedbackQuestion';
 import {FeedbackForm} from './FeedbackForm';
 import {Thanks} from './Thanks';
 
-const HomeNavigator = createStackNavigator(
-  {
-    Home: Home,
-    FeedbackQuestion: FeedbackQuestion,
-    FeedbackForm: FeedbackForm,
-    Thanks: Thanks,
-  },
-  {
-    headerMode: 'none',
-  },
-);
+export const stacks = {
+  Home,
+  FeedbackQuestion,
+  FeedbackForm,
+  Thanks,
+};
+
+const HomeNavigator = createStackNavigator(stacks, {
+  headerMode: 'none',
+});
 
 export const AppNavigator = createAppContainer(HomeNavigator);

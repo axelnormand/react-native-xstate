@@ -16,10 +16,14 @@ export const FeedbackQuestion: NavigationStackScreenComponent = ({
       testID="feedbackQuestion">
       <Button
         style={{marginBottom: 50}}
+        testID="click_yes"
         onPress={() => navigate({type: 'CLICK_YES'})}>
         YES
       </Button>
-      <Button status="danger" onPress={() => navigate({type: 'CLICK_NO'})}>
+      <Button
+        status="danger"
+        testID="click_no"
+        onPress={() => navigate({type: 'CLICK_NO'})}>
         NO
       </Button>
     </Screen>

@@ -3,6 +3,6 @@
   "compilerOptions": {
     "module": "commonjs"
   },
-  "include": ["./**/*.ts"],
+  "include": ["./**/*.ts", "../src/**/.{ts,tsx}"],
   "exclude": ["../node_modules"]
 }
