@@ -1,6 +1,6 @@
 import {device, element, by} from 'detox';
 import {createModel} from '@xstate/test';
-import {feedbackMachine} from '../src/feedbackMachine';
+import {getFeedbackMachine} from '../src/feedbackMachine';
 
 describe('Feedback App', () => {
   beforeEach(async () => {
@@ -27,6 +27,21 @@ describe('Feedback App', () => {
     feedbackModel.testCoverage();
   });
 });
+
+// add meta test entries to each state
+const feedbackMachine = getFeedbackMachine();
+
+feedbackMachine.states.home.meta.test = async () =>
+  await element(by.id('home'));
+
+feedbackMachine.states.feedbackQuestion.meta.test = async () =>
+  await element(by.id('feedbackQuestion'));
+
+feedbackMachine.states.feedbackForm.meta.test = async () =>
+  await element(by.id('feedbackForm'));
+
+feedbackMachine.states.thanks.meta.test = async () =>
+  await element(by.id('thanks'));
 
 const feedbackModel = createModel(feedbackMachine).withEvents({
   CLICK_FEEDBACK: {
