@@ -1,10 +1,11 @@
-import 'react-native';
 import React from 'react';
-import renderer from 'react-test-renderer';
+import {render} from '@testing-library/react-native';
 import App from './App';
 
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 
 it('renders correctly', () => {
-  renderer.create(<App />);
+  const {getByTestId} = render(<App />);
+
+  expect(getByTestId('home')).toBeDefined();
 });

@@ -5,7 +5,7 @@ import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {mapping, dark} from '@eva-design/eva';
 import {AppNavigator} from './navigation';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />

@@ -5,14 +5,14 @@ import {FeedbackQuestion} from './FeedbackQuestion';
 import {FeedbackForm} from './FeedbackForm';
 import {Thanks} from './Thanks';
 
-export const stacks = {
+const homeStack = {
   Home,
   FeedbackQuestion,
   FeedbackForm,
   Thanks,
 };
 
-const HomeNavigator = createStackNavigator(stacks, {
+const HomeNavigator = createStackNavigator(homeStack, {
   headerMode: 'none',
 });
 
