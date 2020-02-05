@@ -5,4 +5,5 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!(react-native.+|@react-native.+|@ui-kitten.+|@react-navigation.+|react-navigation.+)/)',
   ],
+  testPathIgnorePatterns: ['/node_modules/', '/e2e/'],
 };

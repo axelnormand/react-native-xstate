@@ -1,21 +1,15 @@
 import {element, by} from 'detox';
 import {createModel} from '@xstate/test';
 import {getFeedbackMachine} from '../src/feedbackMachine';
+import {setTestMap} from '../src/test/setTestMap';
 
 // add meta test entries to each state
-const feedbackMachine = getFeedbackMachine();
-
-feedbackMachine.states.home.meta.test = async () =>
-  await element(by.id('home'));
-
-feedbackMachine.states.feedbackQuestion.meta.test = async () =>
-  await element(by.id('feedbackQuestion'));
-
-feedbackMachine.states.feedbackForm.meta.test = async () =>
-  await element(by.id('feedbackForm'));
-
-feedbackMachine.states.thanks.meta.test = async () =>
-  await element(by.id('thanks'));
+const feedbackMachine = setTestMap(getFeedbackMachine(), {
+  home: async () => await element(by.id('home')),
+  feedbackQuestion: async () => await element(by.id('feedbackQuestion')),
+  feedbackForm: async () => await element(by.id('feedbackForm')),
+  thanks: async () => await element(by.id('thanks')),
+});
 
 export const feedbackModel = createModel(feedbackMachine).withEvents({
   CLICK_FEEDBACK: {
