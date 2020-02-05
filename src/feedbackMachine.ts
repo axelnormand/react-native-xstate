@@ -85,5 +85,5 @@ export const getFeedbackMachine = () =>
 
 /** start singleton feedback machine on bootstrap */
 export const feedbackService = interpret(getFeedbackMachine())
-  .onTransition(state => console.log('state transition', state))
+  .onTransition(state => console.log(`state transition to ${state.value}`))
   .start();
