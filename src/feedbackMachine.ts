@@ -21,9 +21,11 @@ export type Context = {
   feedback: string;
 };
 
+export const id = 'feedbackMachine';
+
 export const getFeedbackMachine = () =>
   Machine<Context, StateSchema, Event>({
-    id: 'feedbackMachine',
+    id,
     context: {
       submitted: false,
       feedback: '',

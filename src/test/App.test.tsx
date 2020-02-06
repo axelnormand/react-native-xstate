@@ -8,29 +8,54 @@ import App from '../App';
 
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 
-jest.useFakeTimers();
+// make react navigation transitions happen in jest to test whole app
+// https://www.native-testing-library.com/docs/example-navigation
+jest.mock('react-native-gesture-handler', () => {
+  const View = require('react-native/Libraries/Components/View/View');
+  return {
+    State: {},
+    PanGestureHandler: View,
+    BaseButton: View,
+    Directions: {},
+  };
+});
+
+console.warn = arg => {
+  const warnings = [
+    'Calling .measureInWindow()',
+    'Calling .measureLayout()',
+    'Calling .setNativeProps()',
+    'Calling .focus()',
+    'Calling .blur()',
+  ];
+
+  const finalArgs = warnings.reduce(
+    // @ts-ignore
+    (acc, curr) => (arg.includes(curr) ? [...acc, arg] : acc),
+    [],
+  );
+
+  if (!finalArgs.length) {
+    console.warn(arg);
+  }
+};
 
 // add meta test entries to each state
 const testFeedbackMachine = setTestMap(getTestFeedbackMachine(), {
   home: async ({getByTestId}: RenderResult<any>) => {
-    await Promise.resolve(true);
-    expect(getByTestId('home')).toBeDefined();
+    await expect(getByTestId('home')).toBeDefined();
   },
 
-  feedbackQuestion: async ({getByTestId, debug}: RenderResult<any>) => {
-    await Promise.resolve(true);
-    debug();
-    expect(getByTestId('feedbackQuestion')).toBeDefined();
+  feedbackQuestion: async ({getByTestId}: RenderResult<any>) => {
+    await expect(getByTestId('feedbackQuestion')).toBeDefined();
   },
 
   feedbackForm: async ({getByTestId}: RenderResult<any>) => {
-    await Promise.resolve(true);
-    expect(getByTestId('feedbackForm')).toBeDefined();
+    await expect(getByTestId('feedbackForm')).toBeDefined();
   },
 
   thanks: async ({getByTestId}: RenderResult<any>) => {
-    await Promise.resolve(true);
-    expect(getByTestId('thanks')).toBeDefined();
+    await expect(getByTestId('thanks')).toBeDefined();
   },
 });
 

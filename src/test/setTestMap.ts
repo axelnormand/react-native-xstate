@@ -6,6 +6,9 @@ export const setTestMap = (
   testMap: {[state: string]: (prop: any) => Promise<any> | any},
 ) => {
   Object.keys(stateMachine.states).forEach(state => {
+    if (!stateMachine.states[state].meta) {
+      stateMachine.states[state].meta = {};
+    }
     stateMachine.states[state].meta.test = testMap[state];
   });
   return stateMachine;
