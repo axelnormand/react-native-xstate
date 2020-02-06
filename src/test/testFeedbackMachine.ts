@@ -1,6 +1,10 @@
 import {Machine} from 'xstate';
 import {StateSchema, Context, Event} from 'src/feedbackMachine';
 
+/**
+ * Better practice to re-create a simple machine to test states "as a user would see it".
+ * Using the real machine would tie the test to implementation details
+ */
 export const getTestFeedbackMachine = () =>
   Machine<Context, StateSchema, Event>({
     id: 'testFeedbackMachine',

@@ -48,7 +48,7 @@ export const feedbackModel = createModel(testFeedbackMachine).withEvents({
   },
 });
 
-// now loop through tree testing journeys
+// now traverse tree testing all simple paths
 describe('Feedback App', () => {
   beforeEach(async () => {
     await device.reloadReactNative();

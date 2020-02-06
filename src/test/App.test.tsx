@@ -4,41 +4,11 @@ import {createModel} from '@xstate/test';
 import {Context} from '../feedbackMachine';
 import {setTestMap} from './setTestMap';
 import {getTestFeedbackMachine} from './testFeedbackMachine';
+import {mockGesturesForNavigation} from './mockNavigation';
 import App from '../App';
 
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
-
-// make react navigation transitions happen in jest to test whole app
-// https://www.native-testing-library.com/docs/example-navigation
-jest.mock('react-native-gesture-handler', () => {
-  const View = require('react-native/Libraries/Components/View/View');
-  return {
-    State: {},
-    PanGestureHandler: View,
-    BaseButton: View,
-    Directions: {},
-  };
-});
-
-console.warn = arg => {
-  const warnings = [
-    'Calling .measureInWindow()',
-    'Calling .measureLayout()',
-    'Calling .setNativeProps()',
-    'Calling .focus()',
-    'Calling .blur()',
-  ];
-
-  const finalArgs = warnings.reduce(
-    // @ts-ignore
-    (acc, curr) => (arg.includes(curr) ? [...acc, arg] : acc),
-    [],
-  );
-
-  if (!finalArgs.length) {
-    console.warn(arg);
-  }
-};
+jest.mock('react-native-gesture-handler', () => mockGesturesForNavigation());
 
 // add meta test entries to each state
 const testFeedbackMachine = setTestMap(getTestFeedbackMachine(), {
@@ -46,7 +16,8 @@ const testFeedbackMachine = setTestMap(getTestFeedbackMachine(), {
     await expect(getByTestId('home')).toBeDefined();
   },
 
-  feedbackQuestion: async ({getByTestId}: RenderResult<any>) => {
+  feedbackQuestion: async ({getByTestId, debug}: RenderResult<any>) => {
+    await debug();
     await expect(getByTestId('feedbackQuestion')).toBeDefined();
   },
 
@@ -98,7 +69,7 @@ export const feedbackModel = createModel<RenderResult, Context>(
   },
 });
 
-// now loop through tree testing journeys
+// now traverse tree testing all simple paths
 describe('Feedback App', () => {
   const testPlans = feedbackModel.getSimplePathPlans();
 
