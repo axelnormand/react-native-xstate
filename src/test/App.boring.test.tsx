@@ -1,14 +1,10 @@
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react-native';
-import {mockGesturesForNavigation} from './mockNavigation';
-import App from '../App';
-
-jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
-jest.mock('react-native-gesture-handler', () => mockGesturesForNavigation());
+import {MockApp} from './MockApp';
 
 describe('Feedback App the boring way', () => {
   it('Home: Should show the Question screen when "Feedback" is clicked', async () => {
-    const {getByTestId} = render(<App />);
+    const {getByTestId} = render(<MockApp />);
 
     // Home screen should be visible at first
     await expect(getByTestId('home'));
@@ -21,7 +17,7 @@ describe('Feedback App the boring way', () => {
   });
 
   it('FeedbackQuestion: should show the Form screen when "No" is clicked', async () => {
-    const {getByTestId} = render(<App />);
+    const {getByTestId} = render(<MockApp />);
 
     // Click some buttons
     fireEvent.press(getByTestId('click_feedback'));

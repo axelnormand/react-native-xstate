@@ -1,14 +1,17 @@
 import React from 'react';
 import {render, RenderResult, fireEvent} from '@testing-library/react-native';
 import {createModel} from '@xstate/test';
-import {Context} from '../feedbackMachine';
+import {Context, feedbackService} from '../feedbackMachine';
 import {setTestMap} from './setTestMap';
 import {getTestFeedbackMachine} from './testFeedbackMachine';
-import {mockGesturesForNavigation} from './mockNavigation';
-import App from '../App';
+import {MockApp} from './MockApp';
 
-jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
-jest.mock('react-native-gesture-handler', () => mockGesturesForNavigation());
+beforeEach(() => {
+  jest.resetAllMocks();
+  // be sure to restart the machine service or will be in wrong state
+  feedbackService.stop();
+  feedbackService.start();
+});
 
 // add meta test entries to each state
 const testFeedbackMachine = setTestMap(getTestFeedbackMachine(), {
@@ -16,8 +19,7 @@ const testFeedbackMachine = setTestMap(getTestFeedbackMachine(), {
     await expect(getByTestId('home')).toBeDefined();
   },
 
-  feedbackQuestion: async ({getByTestId, debug}: RenderResult<any>) => {
-    await debug();
+  feedbackQuestion: async ({getByTestId}: RenderResult<any>) => {
     await expect(getByTestId('feedbackQuestion')).toBeDefined();
   },
 
@@ -79,7 +81,7 @@ describe('Feedback App', () => {
         it(
           path.description,
           async () => {
-            const rendered = render(<App />);
+            const rendered = render(<MockApp />);
             await path.test(rendered);
           },
           10000,
