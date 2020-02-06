@@ -1,8 +1,9 @@
 import React from 'react';
 import {render, RenderResult, fireEvent} from '@testing-library/react-native';
 import {createModel} from '@xstate/test';
-import {getFeedbackMachine, Context} from '../feedbackMachine';
+import {Context} from '../feedbackMachine';
 import {setTestMap} from './setTestMap';
+import {getTestFeedbackMachine} from './testFeedbackMachine';
 import App from '../App';
 
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
@@ -10,7 +11,7 @@ jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 jest.useFakeTimers();
 
 // add meta test entries to each state
-const feedbackMachine = setTestMap(getFeedbackMachine(), {
+const testFeedbackMachine = setTestMap(getTestFeedbackMachine(), {
   home: async ({getByTestId}: RenderResult<any>) => {
     await Promise.resolve(true);
     expect(getByTestId('home')).toBeDefined();
@@ -35,7 +36,7 @@ const feedbackMachine = setTestMap(getFeedbackMachine(), {
 
 // add test action for each event
 export const feedbackModel = createModel<RenderResult, Context>(
-  feedbackMachine,
+  testFeedbackMachine,
 ).withEvents({
   CLICK_FEEDBACK: {
     exec: ({getByTestId}) => {

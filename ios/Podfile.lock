@@ -229,6 +229,7 @@ PODS:
     - React
   - RNSVG (11.0.1):
     - React
+  - SocketRocket (0.5.1)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -265,6 +266,7 @@ DEPENDENCIES:
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - SocketRocket (from `../node_modules/detox/ios_src/SocketRocket`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -332,6 +334,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  SocketRocket:
+    :path: "../node_modules/detox/ios_src/SocketRocket"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -367,6 +371,7 @@ SPEC CHECKSUMS:
   RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
   RNScreens: a55364dc1833101f836cee70975ce1fea615a12f
   RNSVG: 67f1f12dae2cef6ed59a42cae74a6b8f5a9e7b46
+  SocketRocket: dbb1554b8fc288ef8ef370d6285aeca7361be31e
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
 PODFILE CHECKSUM: f245b2aedb2ec3e394b04986e3a05bd3a7657e7e
