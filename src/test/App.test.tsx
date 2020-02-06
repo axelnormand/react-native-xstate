@@ -11,17 +11,26 @@ jest.useFakeTimers();
 
 // add meta test entries to each state
 const feedbackMachine = setTestMap(getFeedbackMachine(), {
-  home: ({getByTestId}: RenderResult<any>) =>
-    expect(getByTestId('home')).toBeDefined(),
+  home: async ({getByTestId}: RenderResult<any>) => {
+    await Promise.resolve(true);
+    expect(getByTestId('home')).toBeDefined();
+  },
 
-  feedbackQuestion: ({getByTestId}: RenderResult<any>) =>
-    expect(getByTestId('feedbackQuestion')).toBeDefined(),
+  feedbackQuestion: async ({getByTestId, debug}: RenderResult<any>) => {
+    await Promise.resolve(true);
+    debug();
+    expect(getByTestId('feedbackQuestion')).toBeDefined();
+  },
 
-  feedbackForm: ({getByTestId}: RenderResult<any>) =>
-    expect(getByTestId('feedbackForm')).toBeDefined(),
+  feedbackForm: async ({getByTestId}: RenderResult<any>) => {
+    await Promise.resolve(true);
+    expect(getByTestId('feedbackForm')).toBeDefined();
+  },
 
-  thanks: ({getByTestId}: RenderResult<any>) =>
-    expect(getByTestId('thanks')).toBeDefined(),
+  thanks: async ({getByTestId}: RenderResult<any>) => {
+    await Promise.resolve(true);
+    expect(getByTestId('thanks')).toBeDefined();
+  },
 });
 
 // add test action for each event
@@ -31,19 +40,16 @@ export const feedbackModel = createModel<RenderResult, Context>(
   CLICK_FEEDBACK: {
     exec: ({getByTestId}) => {
       fireEvent.press(getByTestId('click_feedback'));
-      jest.runAllTicks();
     },
   },
   CLICK_YES: {
     exec: ({getByTestId}) => {
       fireEvent.press(getByTestId('click_yes'));
-      jest.runAllTicks();
     },
   },
   CLICK_NO: {
     exec: ({getByTestId}) => {
       fireEvent.press(getByTestId('click_no'));
-      jest.runAllTicks();
     },
   },
   SUBMIT_FEEDBACK: {
@@ -51,20 +57,17 @@ export const feedbackModel = createModel<RenderResult, Context>(
       // @ts-ignore event type for now
       fireEvent.changeText(getByTestId('input_feedback'), event.feedback);
       fireEvent.press(getByTestId('submit_feedback'));
-      jest.runAllTicks();
     },
     cases: [{feedback: 'state machines ftw'}, {feedback: ''}],
   },
   CLICK_BACK: {
     exec: ({getByTestId}) => {
       fireEvent.press(getByTestId('click_back'));
-      jest.runAllTicks();
     },
   },
   CLICK_HOME: {
     exec: ({getByTestId}) => {
       fireEvent.press(getByTestId('click_home'));
-      jest.runAllTicks();
     },
   },
 });
