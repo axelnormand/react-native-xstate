@@ -7,7 +7,7 @@ import {getTestFeedbackMachine} from './testFeedbackMachine';
 import {MockApp} from './MockApp';
 
 beforeEach(() => {
-  jest.resetAllMocks();
+  jest.clearAllMocks();
   // be sure to restart the machine service or will be in wrong state
   feedbackService.stop();
   feedbackService.start();
@@ -90,7 +90,7 @@ describe('Feedback App', () => {
     });
   });
 
-  it('coverage', () => {
+  it('Feedback app navigation coverage', () => {
     feedbackModel.testCoverage();
   });
 });
